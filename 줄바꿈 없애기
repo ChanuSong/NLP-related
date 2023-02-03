@@ -1,0 +1,13 @@
+# 줄바꿈이 있는 예문
+sen = """inflation, business, forex, trading, 
+timing, industry, sentiment, currencies, 
+generally, annualize, monetary, 
+exchange, demand, extremely, result, 
+risk, period, devaluation, fx, pricing, 
+crisis, economy, price, global, stock, 
+euro, consumer, volatile, derivative, 
+currency, dollar, volatility, market, 
+extreme
+"""
+new_str = sen.replace("\n", "")
+print(new_str)
