@@ -1,3 +1,5 @@
+# pip install gensim <- gensim 설치 필요
+
 from konlpy.tag import Okt
 from gensim.models import Word2Vec
 
