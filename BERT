@@ -1,0 +1,21 @@
+!pip install transformers
+
+import torch
+from transformers import AutoTokenizer, AutoModel
+
+# Load the BERT model and tokenizer
+tokenizer = AutoTokenizer.from_pretrained("bert-base-multilingual-cased")
+model = AutoModel.from_pretrained("bert-base-multilingual-cased")
+
+# Tokenize and encode the text
+input_ids = torch.tensor(tokenizer.encode("Korean text to classify", add_special_tokens=True)).unsqueeze(0)
+
+# Pass the input through the model to get the logits
+with torch.no_grad():
+    logits = model(input_ids)[0]
+
+# Apply a final activation function to get the probabilities
+probs = torch.softmax(logits, dim=1)
+
+# Print the probabilities
+print(probs)
