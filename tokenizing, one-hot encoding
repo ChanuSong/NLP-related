@@ -1,0 +1,22 @@
+# txt file로부터 토크나이징
+
+from konlpy.tag import Okt
+
+with open('filename.txt', 'r', encoding='utf-8') as file:
+    text = file.read()
+
+okt = Okt()
+tokens = okt.morphs(text)
+
+print(tokens)
+
+# 단어집 생성
+vocab = set(tokens)
+
+# 단어를 단어집에 있는 인덱스와 맵핑
+word_to_index = {word: index for index, word in enumerate(vocab)}
+
+# 원핫 인코딩
+onehot_encoded = np.zeros((len(tokens), len(vocab)))
+for i, word in enumerate(tokens):
+    onehot_encoded[i, word_to_index[word]] = 1
