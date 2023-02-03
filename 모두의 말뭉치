@@ -1,0 +1,21 @@
+# 국립국어원 모두의 말뭉치(JSON File)을 읽은 후 원하는 키워드를 입력하여 해당 키워드가 있는 문장을 txt파일로 저장하기
+
+def get_sentence(json_file, word):
+    with open(json_file, "r", encoding="utf-8") as file:
+        data = json.load(file)
+        document = data["document"]
+        sentences = []
+        for doc in document:
+            paragraphs = doc["paragraph"]
+            for para in paragraphs:
+                if word in para["form"]:
+                    sentences.append(para["form"])
+        return sentences
+
+json_file = "말뭉치 파일명.json"
+word = input("원하는 단어를 입력하세요: ")
+sentences = get_sentence(json_file, word)
+
+with open("저장할 텍스트 파일명.txt", "w", encoding="utf-8") as file:
+    for sentence in sentences:
+        file.write(sentence + "\n")
