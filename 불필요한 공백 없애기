@@ -1,0 +1,10 @@
+# 2개 이상의 비정상적인 공백이 있을 때 지우는 법 (영어 기준)
+
+text = "   this   text   has   extra   spaces   "
+text = " ".join(text.split())
+print(text)
+
+# Let me explain this part of the code: text = " ".join(text.split()).
+# text.split() splits the text string into a list of words, using the whitespace characters as a separator. For example, " this text has extra spaces ".split() will return ['this', 'text', 'has', 'extra', 'spaces'].
+# " ".join(text.split()) then joins the elements in the list with a single space character, effectively collapsing any extra spaces between words. The result of this expression is a string of words separated by a single space.
+# So, the line text = " ".join(text.split()) is equivalent to saying: "Replace the text string with a new string that is constructed by joining the words in text with a single space character."
