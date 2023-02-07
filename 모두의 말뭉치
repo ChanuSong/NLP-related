@@ -38,6 +38,18 @@ file_list = [json_file1.json, json_file2.json, ...]
 result_file = 'result.json'
 combine_json_files(file_list, result_file)
 
+# 여러 JSON 파일을 읽어서 하나의 변수로 저장하는 코드
+
+import json
+
+json_files = ['file1.json', 'file2.json', 'file3.json']
+data = []
+
+for file in json_files:
+    with open(file) as f:
+        data.append(json.load(f))
+
+
 # JSON 파일명을 가져오는 코드
 
 import os
