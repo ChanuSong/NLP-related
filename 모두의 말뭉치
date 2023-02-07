@@ -21,7 +21,7 @@ with open("저장할 텍스트 파일명.txt", "w", encoding="utf-8") as file:
         file.write(sentence + "\n")
 
 
-# 여러 JSON 파일을 하나로 합치는 코드
+# 여러 JSON 파일을 병합하는 코드
 
 import json
 
@@ -38,7 +38,7 @@ file_list = [json_file1.json, json_file2.json, ...]
 result_file = 'result.json'
 combine_json_files(file_list, result_file)
 
-# 여러 JSON 파일을 읽어서 하나의 변수로 저장하는 코드
+# 여러 JSON 파일을 읽어서 하나의 리스트로 저장하는 코드
 
 import json
 
