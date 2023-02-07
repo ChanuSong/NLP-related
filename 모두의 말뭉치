@@ -37,3 +37,10 @@ def combine_json_files(file_list, result_file):
 file_list = [json_file1.json, json_file2.json, ...]
 result_file = 'result.json'
 combine_json_files(file_list, result_file)
+
+# JSON 파일명을 가져오는 코드
+
+import os
+
+directory = '/path/to/directory'
+file_list = [f for f in os.listdir(directory) if f.endswith('.json')]
