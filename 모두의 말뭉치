@@ -19,3 +19,21 @@ sentences = get_sentence(json_file, word)
 with open("저장할 텍스트 파일명.txt", "w", encoding="utf-8") as file:
     for sentence in sentences:
         file.write(sentence + "\n")
+
+
+# 여러 JSON 파일을 하나로 합치는 코드
+
+import json
+
+def combine_json_files(file_list, result_file):
+    result = {}
+    for file in file_list:
+        with open(file, 'r') as f:
+            data = json.load(f)
+            result.update(data)
+    with open(result_file, 'w') as f:
+        json.dump(result, f, indent=4)
+
+file_list = [json_file1.json, json_file2.json, ...]
+result_file = 'result.json'
+combine_json_files(file_list, result_file)
