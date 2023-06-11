@@ -1,0 +1,45 @@
+import nltk
+nltk.download()
+
+with open('Mind AI - Theory of Conversation.txt', 'r') as file:
+    text = file.read()
+
+# 소문자 변환
+text = text.lower()
+
+# 문장 토큰화
+sentences = nltk.sent_tokenize(text)
+
+# Lemmatization을 위한 객체 생성
+lemmatizer = WordNetLemmatizer()
+
+# 단어 토큰화 및 불용어 제거 후 Lemmatization
+words = [lemmatizer.lemmatize(word) for sent in sentences for word in word_tokenize(sent) if word.isalnum() and word not in stopwords.words('english')]
+
+# 단어 빈도 계산
+freq_dist = nltk.FreqDist(words)
+
+# 상위 10개 단어 출력
+print(freq_dist.most_common(20))
+
+#--------
+
+import nltk
+from nltk.corpus import PlaintextCorpusReader
+from nltk.text import TextCollection
+
+# 내가 만든 텍스트 파일의 경로
+corpus_root = '내가_만든_텍스트_파일이_있는_폴더_경로'
+corpus = PlaintextCorpusReader(corpus_root, '.*')
+
+# 단어 토큰화
+words = nltk.word_tokenize(corpus.raw())
+
+# TF-IDF 계산을 위한 텍스트 컬렉션 생성
+collection = TextCollection([words])
+
+# 내 텍스트에서 상위 TF-IDF 단어 찾기
+significant_words = [word for word in words if collection.tf_idf(word, words) > threshold]
+
+# 결과 출력
+print(significant_words)
