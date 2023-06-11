@@ -5,20 +5,20 @@ import re
 
 def pdf_to_text(pdf_path, text_path):
     with open(pdf_path, 'rb') as pdf_file:
-        reader = PyPDF2.PdfFileReader(pdf_file)
-        num_pages = reader.numPages
+        reader = PyPDF2.PdfReader(pdf_file)
+        num_pages = len(reader.pages)
 
         text_content = ''
         for page_num in range(num_pages):
-            page = reader.getPage(page_num)
-            text_content += page.extractText()
+            page = reader.pages[page_num]
+            text_content += page.extract_text()
 
         # 띄어쓰기가 두 개 이상인 경우 한 개로 바꾸기
         text_content = re.sub(r'\s+', ' ', text_content)
 
         with open(text_path, 'w', encoding='utf-8') as text_file:
             text_file.write(text_content)
-
+            
 # PDF 파일 경로
 pdf_file_path = 'example.pdf'
 
