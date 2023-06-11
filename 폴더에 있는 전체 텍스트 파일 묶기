@@ -1,0 +1,18 @@
+import glob
+
+def merge_text_files_in_folder(folder_path, output_file):
+    input_files = glob.glob(folder_path + '/*.txt')  # 폴더 내의 모든 텍스트 파일 경로를 찾음
+
+    with open(output_file, 'w', encoding='utf-8') as outfile:
+        for input_file in input_files:
+            with open(input_file, 'r', encoding='utf-8') as infile:
+                outfile.write(infile.read())
+
+# 폴더 경로
+folder_path = '/path/to/folder'
+
+# 출력 파일 경로
+output_file = 'merged_file.txt'
+
+# 폴더 내의 텍스트 파일들을 하나로 병합하여 저장
+merge_text_files_in_folder(folder_path, output_file)
