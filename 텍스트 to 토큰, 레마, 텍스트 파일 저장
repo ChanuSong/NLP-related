@@ -1,0 +1,25 @@
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+from nltk.tokenize import word_tokenize
+from nltk.corpus import PlaintextCorpusReader
+
+with open('file_name.txt', 'r') as file:
+    text = file.read()
+
+# 소문자 변환
+text = text.lower()
+
+# 문장 토큰화
+sentences = nltk.sent_tokenize(text)
+
+# Lemmatization을 위한 객체 생성
+lemmatizer = WordNetLemmatizer()
+
+# 단어 토큰화 및 불용어 제거 후 Lemmatization
+words = [lemmatizer.lemmatize(word) for sent in sentences for word in word_tokenize(sent) if word.isalnum() and word not in stopwords.words('english')]
+
+
+# 결과를 파일로 저장
+output_file = 'file_name_lemma.txt'
+with open(output_file, 'w', encoding='utf-8') as file:
+    file.write(' '.join(words))
